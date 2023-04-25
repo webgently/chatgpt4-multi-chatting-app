@@ -38,7 +38,18 @@ module.exports = {
         primary: '#0e1621',
         second: '#17212b',
         third: '#182533',
-        forth: '#2b5278'
+        forth: '#2b5278',
+        blue: '#2AB9F6',
+        purple: '#7B4DD9',
+        red: '#EE3254',
+        yellow: '#F9B020',
+        green: '#06B26E',
+        'thin-blue': '#66EEF7',
+        'thin-purple': '#F1F1FE',
+        'think-blue': '#02509B',
+        'thick-purple': '#7C4DD9',
+        'thin-gray': '#EBF5FF',
+        'thick-gray': '#434343'
       },
       container: {
         center: true
