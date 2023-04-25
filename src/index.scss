@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+@import './App';
 @import './pages/Dashboard/dashboard';
 @import './pages/AdminLogin/adminlogin';
 @import './pages/ChatRoom/chatroom';
