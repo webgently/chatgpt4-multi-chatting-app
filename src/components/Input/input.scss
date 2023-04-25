@@ -1,0 +1,29 @@
+.input-container {
+  @apply flex items-center gap-[10px] w-full h-full bg-white border-[1px] rounded-full pl-[20px] pr-[30px] py-[10px] relative;
+  .input-main {
+    @apply flex items-center relative w-full;
+    span {
+      @apply absolute text-[14px] xs:text-[16px];
+    }
+    input {
+      @apply text-[14px] xs:text-[16px] outline-none border-none w-full h-full;
+    }
+  }
+  .input-active {
+    input {
+      @apply pt-[10px];
+    }
+    span {
+      @apply -top-[5px] xs:-top-[9px] text-[10px] xs:text-[12px] transition-all duration-[0.5];
+    }
+  }
+  &:hover {
+    @apply border-blue;
+    input {
+      @apply pt-[10px];
+    }
+    span {
+      @apply -top-[5px] xs:-top-[9px] text-[10px] xs:text-[12px] transition-all duration-[0.5];
+    }
+  }
+}
