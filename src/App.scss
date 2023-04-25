@@ -73,11 +73,11 @@ input:-webkit-autofill:active{
   >div {
     @apply col-span-2 flex flex-col space-y-[8px] xs:space-y-[10px] relative;
     label {
-      @apply text-thick-blue text-[12px] xs:text-[14px] xl:text-[16px] pl-[8px] font-[600];
+      @apply text-blue text-[12px] xs:text-[14px] xl:text-[16px] pl-[8px] font-[600];
     }
     input {
-      @apply bg-thin-purple w-full outline-none border-[2px] border-white rounded-[30px] px-[25px]
-      pt-[12px] pb-[10px] text-thick-blue text-[12px] xs:text-[14px] md:text-[16px] font-[400] drop-shadow-lg;
+      @apply bg-purple w-full outline-none border-[2px] border-white rounded-[30px] px-[25px]
+      pt-[12px] pb-[10px] text-blue text-[12px] xs:text-[14px] md:text-[16px] font-[400] drop-shadow-lg;
       &:hover, &:focus {
         @apply border-[#2AB9F6];
       }
