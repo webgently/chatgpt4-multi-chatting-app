@@ -1,3 +1,24 @@
 .auth-layout {
-
+  font-family: Poppins;
+  @apply bg-primary h-full min-h-[100vh] w-full;
+  .auth-container {
+    @apply flex justify-center items-center gap-[4%] h-full min-h-[100vh] p-[20px];
+    .auth-form {
+      @apply flex flex-col gap-[30px] xs:gap-[40px] sm:gap-[60px] bg-blue/[0.1] px-[20px] sm:px-[30px] lg:px-[40px] xl:px-[50px] py-[50px] rounded-[20px] shadow-xl;
+      h2 {
+        @apply text-[36px] lg:text-[40px] xl:text-[44px] text-center sm:text-left text-white font-[700px];
+      }
+      .form-control {
+        @apply flex flex-col gap-[20px];
+        .form-element {
+          @apply relative w-[260px] 3xs:w-[280px] 2xs:w-[300px] xs:w-[360px] sm:w-[440px]
+          h-[50px] xs:h-[54px];
+        }
+      }
+      .redirect-other {
+        @apply flex flex-col xs:flex-row gap-[4px] xs:gap-[6px] justify-center items-center
+        text-[14px] sm:text-[16px] text-white;
+      }
+    }
+  }
 }
