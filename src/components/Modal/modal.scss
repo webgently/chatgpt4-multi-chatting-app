@@ -1,0 +1,23 @@
+.modal {
+  @apply flex justify-center items-center fixed w-[100vw] h-[100vh] left-0 top-0 z-[10];
+  .overly {
+    @apply fixed inset-0 bg-black bg-opacity-50 transition-opacity;
+  }
+  .modal-container {
+    @apply absolute z-[20];
+    .modal-main {
+      @apply rounded-[10px] m-[10px] p-[20px] shadow-xl;
+      background: linear-gradient(106.07deg, #401D87 11.94%, #7B4DD9 48.13%, #2AB9F6 97.73%);
+      .modal-header {
+        @apply flex justify-between px-[10px] border-b-[1px] pt-[10px] pb-[14px];
+        h2 {
+          @apply text-white text-[20px] sm:text-[22px] md:text-[24px] lg:text-[26px] font-[600];
+        }
+      }
+      .modal-body {
+        height: calc(100% - 60px);
+        width: 100%;
+      }
+    }
+  }
+}
