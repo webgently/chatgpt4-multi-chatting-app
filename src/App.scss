@@ -1,38 +1,86 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Poppins';
+  src: url('./assets/fonts/Poppins-Regular.ttf');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Euclid';
+  src: url('./assets/fonts/Euclid-Circular-B-Regular.ttf');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+@font-face {
+  font-family: 'BalsamiqSans';
+  src: url('./assets/fonts/BalsamiqSans-Regular.ttf');
+}
+
+.font-Poppins {
+  font-family: Poppins;
+}
+
+.font-Euclid {
+  font-family: Euclid;
+}
+
+.font-BalsamiqSans {
+  font-family: BalsamiqSans;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active{
+  -webkit-transition: color 9999s ease-out, background-color 9999s ease-out;
+  -webkit-transition-delay: 9999s;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #401d87;
+  border: 2px solid #401d87;
+}
+
+.btn-primary {
+  @apply flex justify-center items-center gap-[10px] px-[4px] py-[4px] md:px-[18px] py-[4px] md:py-[12px] w-full h-full
+  text-white rounded-[6px] min-h-[44px] xs:min-h-[50px];
+  background: #2AB9F6;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.btn-outline {
+  @apply flex justify-center items-center gap-[10px] px-[4px] py-[4px] md:px-[18px] py-[4px] md:py-[12px] w-full h-full
+  text-white rounded-[6px] min-h-[44px] xs:min-h-[50px];
+  border: 1px solid #2AB9F6;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.05);
+  &:hover {
+    background: #2AB9F6;
+    border: 1px solid rgba(255, 255, 255, 0.12);
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
+.form-group {
+  @apply grid grid-cols-1 sm:grid-cols-2 gap-[14px] xs:gap-[20px] md:gap-[30px] pt-[20px] xs:pt-[36px] w-full;
+  >div {
+    @apply col-span-2 flex flex-col space-y-[8px] xs:space-y-[10px] relative;
+    label {
+      @apply text-thick-blue text-[12px] xs:text-[14px] xl:text-[16px] pl-[8px] font-[600];
+    }
+    input {
+      @apply bg-thin-purple w-full outline-none border-[2px] border-white rounded-[30px] px-[25px]
+      pt-[12px] pb-[10px] text-thick-blue text-[12px] xs:text-[14px] md:text-[16px] font-[400] drop-shadow-lg;
+      &:hover, &:focus {
+        @apply border-[#2AB9F6];
+      }
+    }
   }
 }
