@@ -1,15 +1,20 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // @ts-ignore
 import Zoom from 'react-reveal/Zoom';
+import { BeatLoader } from 'react-spinners';
 import Input from '../../components/Input';
 import IconMenu from '../../components/Icons';
 import Validator from '../../components/Validator';
 import { toast } from '../../components/Toast';
 import { emailValidator, strongPasswordValidator, checkValidator, passwordView } from '../../utils';
-// import { postRequest } from '../../service';
+import { postRequest } from '../../service';
 
 const Register = () => {
+  /* common variable */
+  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  /* variables for register user */
   const registerInitialize = {
     firstName: {
       type: 'text',
@@ -47,9 +52,9 @@ const Register = () => {
       message: ''
     }
   };
-
   const [userData, setUserData] = useState<{ [key: string]: any }>(registerInitialize);
 
+  /* common function */
   const setData = (ele: string, value: string, label: string) => {
     setUserData({
       ...userData,
@@ -64,42 +69,57 @@ const Register = () => {
       }
     });
   };
-
+  /* register function */
   const register = () => {
-    if (!userData.firstName.value) {
-      toast.warning('First Name is required!');
-      return;
-    }
+    if (!isLoading) {
+      if (!userData.firstName.value) {
+        toast.warning('First Name is required!');
+        return;
+      }
 
-    if (!userData.lastName.value) {
-      toast.warning('Last Name is required!');
-      return;
-    }
+      if (!userData.lastName.value) {
+        toast.warning('Last Name is required!');
+        return;
+      }
 
-    if (!emailValidator(userData.email.value).status) {
-      toast.warning(emailValidator(userData.email.value).msg);
-      return;
-    }
+      if (!emailValidator(userData.email.value).status) {
+        toast.warning(emailValidator(userData.email.value).msg);
+        return;
+      }
 
-    if (!userData.userName.value) {
-      toast.warning('Email is required!');
-      return;
-    }
+      if (!userData.userName.value) {
+        toast.warning('Email is required!');
+        return;
+      }
 
-    if (!strongPasswordValidator(userData.password.value).status) {
-      toast.warning(strongPasswordValidator(userData.password.value).msg);
-      return;
-    }
+      if (!strongPasswordValidator(userData.password.value).status) {
+        toast.warning(strongPasswordValidator(userData.password.value).msg);
+        return;
+      }
 
-    const data = {
-      first_name: userData.firstName.value,
-      last_name: userData.lastName.value,
-      email: userData.email.value,
-      user_name: userData.userName.value,
-      password: userData.password.value,
-      permission: 'user'
-    };
-    // postRequest(`/register`, data).then((res: any) => {});
+      setIsLoading(true);
+      const data = {
+        first_name: userData.firstName.value,
+        last_name: userData.lastName.value,
+        email: userData.email.value,
+        user_name: userData.userName.value,
+        password: userData.password.value,
+        permission: 'user'
+      };
+
+      postRequest(`/register`, data).then((res: any) => {
+        if (res.status) {
+          toast.success(res.message);
+          setUserData(registerInitialize);
+          setTimeout(() => {
+            navigate('/login');
+          }, 1000);
+        } else {
+          toast.error(res.message);
+        }
+        setIsLoading(false);
+      });
+    }
   };
 
   return (
@@ -143,8 +163,8 @@ const Register = () => {
             </div>
           </div>
           <div className="flex flex-col gap-[10px]">
-            <button className="btn-primary !rounded-full" onClick={register}>
-              Sign Up
+            <button className="btn-primary !rounded-full" disabled={isLoading} onClick={register}>
+              {isLoading ? <BeatLoader color="#fff" size={10} /> : 'Sign Up'}
             </button>
             <p className="redirect-other">
               <span>Already have an account?</span>
