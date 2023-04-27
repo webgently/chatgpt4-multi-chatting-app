@@ -7,6 +7,7 @@ const AuthLayout = (props: any) => {
 
   useEffect(() => {
     if (location.pathname === '/') navigate('/login');
+    // eslint-disable-next-line
   }, [location]);
 
   return (
