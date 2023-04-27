@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 export const now = () => Math.round(+new Date().getTime() / 1e3);
 
-const appKey = process.env.REACT_APP_APP_KEY || '';
+const appKey = process.env.REACT_APP_APP_TOKEN_KEY || '';
 
 const getStore = (initialState: StoreObject) => {
   const _state = initialState as { [key: string]: any };
