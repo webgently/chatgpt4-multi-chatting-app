@@ -22,7 +22,7 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/admin_login" element={<AdminLogin />} />
           </Route>
-          <Route path="/chat-room" element={<ChatRoom />} />
+          <Route path="/chat_room" element={<ChatRoom />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
