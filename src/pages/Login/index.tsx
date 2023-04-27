@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 // @ts-ignore
 import Zoom from 'react-reveal/Zoom';
+import { BeatLoader } from 'react-spinners';
 import Input from '../../components/Input';
 import IconMenu from '../../components/Icons';
 import Validator from '../../components/Validator';
 import { toast } from '../../components/Toast';
+import useStore from '../../useStore';
 import { emailValidator, checkValidator, passwordView } from '../../utils';
-// import { postRequest } from '../../service';
+import { postRequest } from '../../service';
 
 const Login = () => {
+  /* common variable */
+  const navigate = useNavigate();
+  const { update, updateSession } = useStore();
+  const [isLoading, setIsLoading] = useState(false);
+  /* variables for login user */
   const loginInitialize = {
     email: {
       type: 'email',
@@ -26,9 +33,10 @@ const Login = () => {
       message: ''
     }
   };
-
+  const [isKeep, setIsKeep] = useState(false);
   const [userData, setUserData] = useState<{ [key: string]: any }>(loginInitialize);
 
+  /* common function */
   const setData = (ele: string, value: string, label: string) => {
     setUserData({
       ...userData,
@@ -39,24 +47,36 @@ const Login = () => {
       }
     });
   };
-
+  /* login function */
   const login = () => {
-    if (!emailValidator(userData.email.value).status) {
-      toast.warning(emailValidator(userData.email.value).msg);
-      return;
+    if (!isLoading) {
+      if (!emailValidator(userData.email.value).status) {
+        toast.warning(emailValidator(userData.email.value).msg);
+        return;
+      }
+
+      if (!userData.password.value) {
+        toast.warning('Password is required!');
+        return;
+      }
+
+      const data = {
+        email: userData.email.value,
+        password: userData.password.value
+      };
+
+      setIsLoading(true);
+      postRequest(`/login`, data).then((res: any) => {
+        if (res.status) {
+          toast.success(res.message);
+          isKeep ? update({ token: res.token }) : updateSession({ token: res.token });
+          navigate('/chat-room');
+        } else {
+          toast.error(res.message);
+        }
+        setIsLoading(false);
+      });
     }
-
-    if (!userData.password.value) {
-      toast.warning('Password is required!');
-      return;
-    }
-
-    const data = {
-      email: userData.email.value,
-      password: userData.password.value
-    };
-
-    // postRequest(`/login`, data).then((res: any) => {});
   };
 
   return (
@@ -97,11 +117,21 @@ const Login = () => {
                   </div>
                 );
               })}
+              <div className="logged-in">
+                <input
+                  type="checkbox"
+                  name="logged"
+                  readOnly
+                  checked={isKeep}
+                  onClick={() => (isKeep ? setIsKeep(false) : setIsKeep(true))}
+                />
+                <label htmlFor="logged">Keep me logged in</label>
+              </div>
             </div>
           </div>
           <div className="flex flex-col gap-[10px]">
-            <button className="btn-primary !rounded-full" onClick={login}>
-              Sign In
+            <button className="btn-primary !rounded-full" disabled={isLoading} onClick={login}>
+              {isLoading ? <BeatLoader color="#fff" size={10} /> : 'Sign In'}
             </button>
             <p className="redirect-other">
               <span>Don’t have an account?</span>
