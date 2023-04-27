@@ -17,7 +17,6 @@ export const getRequest = async (url: string) => {
 };
 
 export const postRequest = async (url: string, data: any) => {
-  console.log(config.tokenString);
   try {
     return await axios
       .post(config.serverHost + url, JSON.stringify(data), {
