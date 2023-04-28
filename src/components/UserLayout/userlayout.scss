@@ -1,0 +1,6 @@
+.user-layout {
+  @apply flex bg-primary h-full min-h-[100vh] w-full;
+  main {
+    width: calc((100% - 80px) * 0.8);
+  }
+}
