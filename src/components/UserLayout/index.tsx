@@ -15,6 +15,7 @@ const UserLayout = () => {
       case '/user/chatting':
         break;
     }
+    // eslint-disable-next-line
   }, [location]);
 
   return (
