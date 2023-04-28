@@ -1,0 +1,4 @@
+.user-list {
+  @apply w-[20%] bg-second;
+  width: calc((100% - 80px) * 0.2);
+}
