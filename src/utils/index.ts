@@ -1,3 +1,5 @@
+import jwt_decode from 'jwt-decode';
+
 export const emailValidator = (mail: string) => {
   if (!mail.trim()) {
     return { status: false, msg: 'Email is required!' };
@@ -62,4 +64,8 @@ export const passwordView = (d: any, ele: string, type: string) => {
       placeholder: type === 'password' ? 'Type Here' : '**********'
     }
   };
+};
+
+export const getUserInfo = (token: string) => {
+  return jwt_decode(token);
 };
