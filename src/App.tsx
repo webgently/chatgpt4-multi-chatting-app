@@ -4,6 +4,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { slice } from './useStore';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AuthLayout from './components/AuthLayout';
+import UserLayout from './components/UserLayout';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ChatRoom from './pages/ChatRoom';
@@ -22,7 +23,9 @@ function App() {
             <Route path="/register" element={<Register />} />
             <Route path="/admin_login" element={<AdminLogin />} />
           </Route>
-          <Route path="/chat_room" element={<ChatRoom />} />
+          <Route path="/user" element={<UserLayout />}>
+            <Route path="/user/chatting" element={<ChatRoom />} />
+          </Route>
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
