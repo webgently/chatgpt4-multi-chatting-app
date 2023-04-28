@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 
-const AuthLayout = (props: any) => {
+const AuthLayout = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
