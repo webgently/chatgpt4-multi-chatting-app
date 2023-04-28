@@ -1,8 +1,6 @@
 import React from 'react';
 import IconMenu from '../../components/Icons';
 
-const userSettingList = [{ label: 'setting', icon: 'User' }];
-
 const UserSidebar = () => {
   return (
     <div className="user-sidebar">
