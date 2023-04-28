@@ -1,0 +1,12 @@
+.user-sidebar {
+  @apply flex flex-col items-center w-[80px] bg-primary py-[20px];
+  .active-hamburger {
+    @apply bg-forth rounded-full text-white;
+  }
+  .hamburger-button {
+    @apply flex justify-center items-center min-w-[40px] min-h-[40px] text-fifth;
+    &:hover {
+      @extend .active-hamburger;
+    }
+  }
+}
