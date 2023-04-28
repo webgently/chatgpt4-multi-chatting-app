@@ -70,7 +70,7 @@ const Login = () => {
         if (res.status) {
           toast.success(res.message);
           isKeep ? update({ token: res.token }) : updateSession({ token: res.token });
-          navigate('/chat_room');
+          navigate('/user/chatting');
         } else {
           toast.error(res.message);
         }
