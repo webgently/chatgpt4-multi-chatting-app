@@ -1,4 +1,4 @@
 .user-list {
-  @apply w-[20%] bg-second;
+  @apply w-[20%] bg-second border-r-[1px] border-primary shadow-md;
   width: calc((100% - 80px) * 0.2);
 }
