@@ -119,28 +119,23 @@ const icons = {
     </svg>
   ),
   Send: (
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
       <g clipPath="url(#clip0_193_817)">
         <path
           d="M14.6667 1.33337L7.33337 8.66671"
-          stroke="#7B4DD9"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
         <path
           d="M14.6667 1.33337L10 14.6667L7.33337 8.66671L1.33337 6.00004L14.6667 1.33337Z"
-          stroke="#7B4DD9"
+          stroke="currentColor"
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
         />
       </g>
-      <defs>
-        <clipPath id="clip0_193_817">
-          <rect width="16" height="16" fill="white" />
-        </clipPath>
-      </defs>
     </svg>
   ),
   Eye: (
@@ -225,6 +220,25 @@ const icons = {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
+    </svg>
+  ),
+  Attach: (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
+      fill="currentColor"
+      height="800px"
+      width="800px"
+      version="1.1"
+      id="Layer_1"
+      viewBox="0 0 511.988 511.988"
+      xmlSpace="preserve"
+    >
+      <g>
+        <g>
+          <path d="M459.1,37.48c-49.999-49.973-131.045-49.973-181.018,0L21.594,295.355c-8.309,8.354-8.272,21.861,0.081,30.17    c8.354,8.309,21.861,8.272,30.17-0.081L308.293,67.609c33.271-33.271,87.308-33.271,120.641,0.045    c33.328,33.328,33.328,87.359,0,120.67L164.912,453.755c-20.787,20.772-54.563,20.772-75.396-0.046    c-20.826-20.826-20.826-54.593,0.006-75.425l218.731-218.731c0.007-0.007,0.013-0.015,0.02-0.022    c8.332-8.309,21.816-8.303,30.139,0.02c8.33,8.33,8.33,21.831,0,30.161l-105.58,105.602c-8.33,8.332-8.329,21.84,0.003,30.17    c8.332,8.33,21.84,8.329,30.17-0.003l105.579-105.6c24.991-24.991,24.991-65.507-0.002-90.499    c-24.993-24.993-65.508-24.993-90.501,0c-0.014,0.014-0.026,0.03-0.04,0.044L59.352,348.115    c-37.494,37.494-37.494,98.276,0,135.77c37.498,37.471,98.272,37.471,135.764,0.006L459.14,218.458    C509.096,168.528,509.096,87.476,459.1,37.48z" />
+        </g>
+      </g>
     </svg>
   )
 } as { [key: string]: JSX.Element };
