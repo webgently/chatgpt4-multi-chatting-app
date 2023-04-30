@@ -1,0 +1,60 @@
+.chatroom {
+  font-family: Poppins;
+  @apply flex flex-col w-full h-full;
+  .chatroom-header {
+    @apply flex items-center h-[80px] px-[20px]
+    bg-second border-b-[1px] border-primary shadow-md;
+    .chatroom-element-info {
+      h4 {
+        @apply text-white text-[16px] font-[600];
+      }
+      p {
+        @apply text-fifth text-[14px] font-[400];
+      }
+    }
+  }
+  .chatroom-body {
+    @apply flex flex-col justify-between;
+    height: calc(100% - 80px);
+    .chatroom-msg-content {
+      @apply flex items-end p-[20px] w-full;
+      height: calc(100% - 60px);
+      .chatroom-msg-group {
+        @apply space-y-[6px] w-full text-white text-[14px] font-[400] overflow-auto;
+        max-height: calc(100vh - 180px);
+        > div {
+          @apply flex items-end gap-[8px];
+          .user-detail {
+            @apply flex justify-center items-center max-w-[40px] max-h-[40px] rounded-full;
+            > p {
+              @apply flex justify-center items-center bg-blue min-w-[40px] min-h-[40px] rounded-full uppercase;
+            }
+            > img {
+              @apply max-w-[40px] max-h-[40px] rounded-full;
+            }
+          }
+          .messages {
+            @apply rounded-[20px] px-[14px] py-[10px] md:max-w-[60%];
+          }
+        }
+      }
+    }
+    .chatroom-typing-content {
+      @apply flex items-center gap-[10px] bg-second h-[60px] w-full px-[20px] py-[18px]
+      border-t-[1px] border-primary shadow-md;
+      .active-type-controller {
+        @apply bg-forth rounded-full text-white;
+      }
+      .type-controller {
+        @apply flex justify-center items-center min-w-[40px] min-h-[40px] text-fifth;
+        &:hover {
+          @extend .active-type-controller;
+        }
+      }
+      textarea {
+        @apply bg-transparent w-full h-full border-none outline-none resize-none
+        text-white text-[16px] font-[400] overflow-hidden;
+      }
+    }
+  }
+}
