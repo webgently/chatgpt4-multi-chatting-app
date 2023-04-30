@@ -104,6 +104,7 @@ const Register = () => {
         email: userData.email.value,
         user_name: userData.userName.value,
         password: userData.password.value,
+        group: ['chatgpt'],
         permission: 'user'
       };
 
