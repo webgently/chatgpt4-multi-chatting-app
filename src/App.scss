@@ -84,3 +84,7 @@ input:-webkit-autofill:active{
     }
   }
 }
+
+body {
+  @apply overflow-hidden;
+}
