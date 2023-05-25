@@ -1,10 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { io } from 'socket.io-client';
-import IconMenu from '../../components/Icons';
-import useStore from '../../useStore';
-import { getUserInfo } from '../../utils';
 import { MSGTypeInterface } from '../../type';
 import AIImg from '../../assets/images/openai.png';
+import { postRequest } from '../../service';
+import { toast } from '../../components/Toast';
+import useStore from '../../useStore';
+import { getUserInfo } from '../../utils';
+import send from "../../assets/images/send.png"
+import attach from "../../assets/images/attach.png"
 
 const socket = io(process.env.REACT_APP_BACKEND_BASE_URL as string);
 
@@ -16,6 +19,7 @@ const ChatRoom = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [msg, setMsg] = useState('');
   const [allMsg, setAllMsg] = useState<MSGTypeInterface[]>([]);
+  const [openTools, setOpenTools] = useState(false);
 
   const scrollToBottom = () => {
     messagesEndRef.current.scrollIntoView({
@@ -55,11 +59,23 @@ const ChatRoom = () => {
     setIsLoading(false);
   };
 
+  const removeHistory = async () => {
+    postRequest('/clearHistory', { email: user.email }).then((res: any) => {
+      if (res.status) {
+        toast.success('Successfully remove your chat histories');
+        setOpenTools(false);
+      } else {
+        toast.error(res.message);
+      }
+    });
+  };
+
   useEffect(() => {
     socket.on('connect', async () => {
       const data = {
         user_id: user.user_id,
-        group: user.group
+        group: user.group,
+        user_name: user.user_name
       };
       /* ---------------join in rooms--------------- */
       socket.emit('join room', data);
@@ -75,6 +91,7 @@ const ChatRoom = () => {
 
     return () => {
       socket.off('connect');
+      socket.off('chatgpt');
       socket.off('group');
     };
     // eslint-disable-next-line
@@ -92,6 +109,30 @@ const ChatRoom = () => {
         <div className="chatroom-element-info">
           <h4>ChatGPT</h4>
           <p>bot</p>
+        </div>
+        <div className="chatroom-right">
+          <div
+            className={`chatroom-tool ${openTools ? 'active' : ''}`}
+            onClick={() => {
+              setOpenTools(!openTools);
+            }}
+          >
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          {openTools && (
+            <div className="chatroom-tool-modal">
+              <div
+                className="item"
+                onClick={() => {
+                  removeHistory();
+                }}
+              >
+                Clear My History
+              </div>
+            </div>
+          )}
         </div>
       </div>
       <div className="chatroom-body">
@@ -112,8 +153,13 @@ const ChatRoom = () => {
                     </div>
                   )}
                   <div className={`messages ${item.from === user.user_id ? 'bg-forth' : 'bg-second'}`}>
+                    <span className="inline">{`[${item.user_name}] : `}</span>
                     {item.message.map((ele: string, ind2: number) => {
-                      return <p key={ind1 + ind2}>{ele}</p>;
+                      return (
+                        <p className="inline" key={ind1 + ind2}>
+                          {ele}
+                        </p>
+                      );
                     })}
                   </div>
                 </div>
@@ -124,7 +170,8 @@ const ChatRoom = () => {
         </div>
         <div className="chatroom-typing-content">
           <button className="type-controller">
-            <IconMenu icon="Attach" size={22} height={30} />
+            <img alt='attach' src={attach} width={22} height={30}></img>
+            {/* <IconMenu icon="Attach" size={22} height={30} /> */}
           </button>
           <textarea
             ref={inputRef}
@@ -134,8 +181,8 @@ const ChatRoom = () => {
             onKeyUp={(e: any) => handleKeyUp(e)}
             onChange={(e: any) => setMsg(e.target.value)}
           />
-          <button className="type-controller">
-            <IconMenu icon="Send" size={20} />
+          <button className="type-controller" onClick={() => { sendChatting(); setMsg('') }}>
+            <img alt='send' src={send} width={20} height={20} style={{marginLeft:"5px"}}></img>
           </button>
         </div>
       </div>
