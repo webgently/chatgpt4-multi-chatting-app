@@ -1,4 +1,44 @@
 .user-list {
-  @apply w-[20%] bg-second border-r-[1px] border-primary shadow-md;
-  width: calc((100% - 80px) * 0.2);
+  font-family: Poppins;
+  @apply flex flex-col min-w-[320px] h-full bg-second border-r-[1px] border-primary shadow-md transition-all duration-500 ease-out;
+
+  @media (max-width: 1024px) {
+    @apply w-0 absolute;
+    &.show {
+      @apply min-w-[280px] h-full top-0 left-[60px] md:left-[80px] z-[10];
+    }
+  }
+
+  @media (max-width:400px) {
+    &.show{
+      min-width: calc(100% - 60px);
+    }
+  }
+  .user-search {
+    @apply flex items-center h-[60px] px-[20px] bg-second border-b-[1px] border-primary shadow-md;
+    > input {
+      @apply w-full px-[10px] py-[6px] text-white bg-third border-none outline-none rounded-[4px];
+    }
+  }
+
+  .user-group {
+    @apply flex flex-col gap-[20px] overflow-auto px-[20px] py-[20px];
+    max-height: calc(100vh - 60px);
+    min-height: calc(100vh - 60px);
+    .user-item {
+      @apply flex justify-between items-center;
+      > div {
+        @apply flex items-center gap-[20px];
+        .user-avatar {
+          @apply flex justify-center items-center w-[50px] h-[50px] bg-blue text-white rounded-full;
+        }
+        > p {
+          @apply text-white whitespace-nowrap overflow-hidden text-ellipsis w-[140px] md:w-[150px] lg:w-[170px] max-w-[160px] md:max-w-[180px];
+        }
+      }
+      > span {
+        @apply w-[10px] h-[10px] rounded-full;
+      }
+    }
+  }
 }
