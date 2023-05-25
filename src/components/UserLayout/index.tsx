@@ -8,6 +8,7 @@ const UserLayout = () => {
   const { token } = useStore();
   const location = useLocation();
   const navigate = useNavigate();
+  const [mobileUserList, setMobileUserList] = React.useState(false);
 
   useEffect(() => {
     if (!token) navigate('/login');
@@ -20,8 +21,8 @@ const UserLayout = () => {
 
   return (
     <div className="user-layout">
-      <UserSidebar />
-      <UserList />
+      <UserSidebar setOpen={setMobileUserList} open={mobileUserList} />
+      <UserList mobileList={mobileUserList} />
       <main>
         <Outlet />
       </main>
